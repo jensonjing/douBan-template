@@ -1,0 +1,31 @@
+<!--正在热映-->
+<!--电影列表开始-->
+        <div class="list">
+            <ul>
+                <li ng-repeat="x in data.subjects">
+                    <a href="#/details/{{x.id}}">
+                        <img  ng-src="{{x.images.large}}" alt="电影海报"><!--注意：这里用ng-src-->
+                    </a>
+                    <div class="meta">
+                        <h4><span>{{x.title}}</span> <em>{{x.rating.average}}分</em></h4>
+                        <div class="otherinfo">类型:<span>{{x.genres.join(",")}}</span></div>
+                    </div>
+                </li>
+            </ul>
+            <div class="paging">
+                <label>总共：{{data.total}}条记录,第{{page}}/{{totalPage}}页;</label>
+                <!-- 加上disable类样式，表示按钮禁用状态,注意：普通按钮中的禁用属性是disabled -->
+                <button ng-class="{disable:page<=1}" class="prev" ng-click="getPage(page - 1)">上一页</button>
+                <button ng-class="{disable:page>=totalPage}" class="next" ng-click="getPage(page + 1)">下一页</button>
+            </div>
+        </div>
+<!--电影列表结束-->
+<!--loading模块-->
+<div ng-show="loading" class="loading-box">loading</div>
+<div ng-show="loading" class="spinner">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div>
